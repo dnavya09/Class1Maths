@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About Shapes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="content">
+        <div id="line">
+            <h2 class="fade-in">ಉದ್ದ ಎಂದರೆ ಏನು?</h2>
+            <canvas id="lineCanvas"></canvas>
+            <p class="fade-in">ಒಂದು ಗೆರೆ ಎರಡೂ ದಿಕ್ಕುಗಳಲ್ಲಿ ಶಾಶ್ವತವಾಗಿ ಹೋಗುತ್ತದೆ. ಏಕೆಂದರೆ ಅದು ಎಂದಿಗೂ ಮುಗಿಯುವುದಿಲ್ಲ, ಒಂದು ಸಾಲು ತುಂಬಾ ಉದ್ದವಾಗಿದೆ ಎಂದು ನಾವು ಹೇಳುತ್ತೇವೆ!</p>
+            <button class="fade-in" onclick="drawAnimatedLine()">ಗೆರೆ ತೋರಿಸು</button>
+            <p class="fade-in">ಈಗ ನಿಮ್ಮ ಸರದಿ! ನಿಮ್ಮ ಸ್ವಂತ ರೇಖೆಯನ್ನು ಸೆಳೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಎಳೆಯಿರಿ:</p>
+            <canvas id="interactiveCanvas"></canvas>
+        </div>
+        <div id="circle">
+            <h2 class="fade-in">ವರ್ತುಳ ಎಂದರೆ ಏನು?</h2>
+            <canvas id="circleCanvas"></canvas>
+            <p class="fade-in">ಒಂದು ವೃತ್ತವು ಸುತ್ತಿನಲ್ಲಿ ಎಲ್ಲಾ ಬಿಂದುಗಳು ಕೇಂದ್ರದಿಂದ ಸಮಾನ ದೂರದಲ್ಲಿ ಇರುವ ಸುತ್ತು.</p>
+            <button class="fade-in" onclick="drawAnimatedCircle()">ವೃತ್ತ ತೋರಿಸು</button>
+            <p class="fade-in">ಈಗ ನಿಮ್ಮ ಸರದಿ! ನಿಮ್ಮ ಸ್ವಂತ ವೃತ್ತವನ್ನು ಸೆಳೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಎಳೆಯಿರಿ:</p>
+            <canvas id="interactiveCircleCanvas"></canvas>
+        </div>
+        <div id="videos">
+            <h2 class="fade-in">ಒಂದು ವೀಡಿಯೋ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ:</h2>
+            <video class="video-object fade-in" src="path/to/long-object.mp4" data-shape="long"></video>
+            <video class="video-object fade-in" src="path/to/round-object.mp4" data-shape="round"></video>
+        </div>
+    </div>
+    <audio id="longAudio" src="C:\Users\Navya Jayaram\Desktop\kid\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="roundAudio" src="C:\Users\Navya Jayaram\Desktop\kid\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
