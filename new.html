@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <title>Learn About Shapes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    
     <div id="content">
         <div id="line">
             <h2 class="fade-in">ಉದ್ದ ಎಂದರೆ ಏನು?</h2>
@@ -26,12 +28,53 @@
         </div>
         <div id="videos">
             <h2 class="fade-in">ಒಂದು ವೀಡಿಯೋ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ:</h2>
-            <video class="video-object fade-in" src="path/to/long-object.mp4" data-shape="long"></video>
-            <video class="video-object fade-in" src="path/to/round-object.mp4" data-shape="round"></video>
+            <video class="video-object fade-in" src="download.png" data-shape="long"></video>
+            <video class="video-object fade-in" src="stick.png" data-shape="round"></video>
+        </div>
+        <div id="drag-drop-section">
+        <h2 class="fade-in">ವಸ್ತುಗಳನ್ನು ಸರಿಯಾದ ಪೆಟ್ಟಿಗೆಯಲ್ಲಿ ಇರಿಸಿ:</h2>
+            <div class="containers">
+                <div class="container" id="roundContainer">
+                    ಗುಂಡು ವಸ್ತುಗಳು</div>
+                <div class="container" id="longContainer">ಉದ್ದ ವಸ್ತುಗಳು</div>
+            </div>
+        <div class="draggable-objects">
+            <div class="draggable" data-shape="round" draggable="true">
+                <img src="download.png" alt="Ball" />
+            </div>
+            <div class="draggable" data-shape="long" draggable="true">
+                <img src="pencil.png" alt="Pencil" />
+            </div>
+            <div class="draggable" data-shape="round" draggable="true">
+                <img src="coin.png" alt="Coin" />
+            </div>
+            <div class="draggable" data-shape="long" draggable="true">
+                <img src="stick.png" alt="Stick" />
+            </div>
+        </div>
+        </div>
+        <div class="line-objects">
+            <div class="object-container" data-shape="round">
+                <img src="download.png" alt="Ball" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="long">
+                <img src="pencil.png" alt="Pencil" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="round">
+                <img src="coin.png" alt="Coin" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="long">
+                <img src="stick.png" alt="Stick" />
+                <div class="ticker"></div>
+            </div>
         </div>
     </div>
-    <audio id="longAudio" src="C:\Users\Navya Jayaram\Desktop\kid\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
-    <audio id="roundAudio" src="C:\Users\Navya Jayaram\Desktop\kid\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    </div>
+    <audio id="longAudio" src="roundis.mp3"></audio>
+    <audio id="roundAudio" src="roundis.mp3"></audio>
     <script src="script.js"></script>
 </body>
 </html>
