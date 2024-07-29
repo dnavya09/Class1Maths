@@ -6,6 +6,349 @@
 /* =================================== */
 /*  Basic Style 
 /* =================================== */
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 20px;
+  cursor: pointer;
+  background-color: #ceb0f6;
+  border-radius: 20px;
+}
+
+.draggable-objects {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.draggable-objects img{
+  width: 100px;
+  height:100px;
+}
+
+.draggable {
+  width: 100px;
+  height: 50px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  margin: 10px;
+}
+
+.draggable.dragging {
+  opacity: 0.5;
+}
+
+.fixed {
+  filter: blur(0.5px);
+}
+
+.tick, .wrong-mark {
+  position: absolute;
+  font-size: 2rem;
+  color: green;
+}
+
+.wrong-mark {
+  color: red;
+}
+
+.containers {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.dragcont {
+  width: 45%;
+  height: 200px;
+  border: 2px dashed #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+#interactiveCanvas {
+  margin-top: 10px;
+  width: 70%;
+  height: 150px;
+}
+
+.object-container {
+  display: inline-block;
+  text-align: center;
+  align-items: center !important;
+  margin: 30px;
+}
+.object-container img{
+  width: 100px;
+  height: 100px;
+}
+.dragcont img{
+  width: 50px;
+  height: 50px;
+}
+.ticker {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 1.5rem;
+}
+
+.tick {
+  color: green;
+}
+
+.wrong-mark {
+  color: red;
+}
+table {
+  width: 60%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#feedback {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: black;
+}
+#objectClassify {
+align-items: center;
+justify-content: center;
+}
+.flashcards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the items horizontally */
+  gap: 10px; /* Adds space between items */
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto; /* Centers the container itself */
+}
+.card {
+  width: 160px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  background-color: white;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, border 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.card img {
+  max-width: 50%;
+  max-height: 50%;
+  transition: transform 0.3s ease;
+}
+.card p {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+.card.highlight-gray {
+  border-color: gray;
+}
+
+.card.highlight-orange {
+  border-color: yellow;
+}
+
+.card.highlight-greyish-white {
+  border-color: black; /* Greyish white color */
+}
+
+.card img.bounce {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-50%); /* Bounce height */
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.card img.rolls {
+  animation: rolls 1s ease;
+}
+
+@keyframes rolls {
+  0%,100% {
+      transform: translateX(0px) rotate(0deg);
+  }
+  50% {
+      transform: translateX(5px) rotate(360deg);
+  }
+}
+
+.card img.pop-up {
+  animation: popup 0.5s ease;
+}
+
+@keyframes popup {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.2);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+.dance {
+  animation: dance 1s ease infinite;
+}
+
+@keyframes dance {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.rotate {
+  animation: rotate 0.6s ease;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pop-up {
+  animation: pop-up 0.6s ease;
+}
+
+@keyframes pop-up {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.fade {
+  animation: fade 0.6s ease;
+}
+
+@keyframes fade {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.wobble {
+  animation: wobble 0.6s ease;
+}
+
+@keyframes wobble {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10%); }
+  50% { transform: translateX(10%); }
+  75% { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
+}
+
+.spray {
+  animation: spray 0.6s ease;
+}
+
+.clip {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 60vh;
+  background-color: #87CEEB;
+  overflow: hidden;
+}
+.plane {
+  width: 80%;
+  height: 4px;
+  background-color: black;
+  position: relative;
+  border-radius: 10px;
+  transform: rotate(20deg);
+}
+.wheel {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -80px;
+  right:70%;
+}
+.rolling {
+  animation: roll 3s linear;
+}
+@keyframes roll {
+  0% {
+      transform: translateX(0) rotate(0deg);
+  }
+  100% {
+      transform: translateX(600px) rotate(360deg);
+  }
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes spray {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+
+
 ::-moz-selection {
   /* Code for Firefox */
   background-color: #7c32ff;
@@ -992,7 +1335,8 @@ th {
     .feature-area {
       margin-top: 0px; } }
   .feature-area .container-fluid {
-    padding-left: 50px; }
+    padding-left: 50px;
+  align-items: center; }
     @media (min-width: 1921px) {
       .feature-area .container-fluid {
         max-width: 1140px;
@@ -1124,7 +1468,7 @@ th {
   .video-area .video-part {
     position: relative; }
     .video-area .video-part .overlay {
-      background: rgba(0, 0, 0, 0.3); }
+      /* background: rgba(0, 0, 0, 0.3); */ }
     .video-area .video-part .popup-youtube {
       position: absolute;
       left: 0px;

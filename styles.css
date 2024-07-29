@@ -58,7 +58,7 @@ button {
     margin-top: 20px;
 }
 
-.container {
+.dragcont {
     width: 45%;
     height: 200px;
     border: 2px dashed #000;
