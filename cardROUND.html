@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .flashcards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .card {
+            width: 160px;
+            height: 200px; /* Increase height to accommodate text below image */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+            background-color: white;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .card img {
+            max-width: 50%; /* Adjust to make sure image fits within card */
+            max-height: 50%; /* Adjust to control the size of the image */
+            transition: transform 0.3s ease;
+        }
+
+        .card p {
+            margin: 10px 0 0; /* Adds space between image and text */
+            text-align: center; /* Centers the text */
+            font-size: 14px; /* Adjust font size if needed */
+        }
+
+        .card.highlight-gray {
+            border-color: gray;
+        }
+
+        .card.highlight-orange {
+            border-color: yellow;
+        }
+
+        .card.highlight-greyish-white {
+            border-color: black; /* Greyish white color */
+        }
+
+        .card img.bounce {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50%); /* Bounce height */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .card img.roll {
+            animation: roll 1s ease;
+        }
+
+        @keyframes roll {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(20px) rotate(360deg);
+            }
+        }
+
+        .card img.pop-up {
+            animation: popup 0.5s ease;
+        }
+
+        @keyframes popup {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .dance {
+            animation: dance 1s ease infinite;
+        }
+
+        @keyframes dance {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .rotate {
+            animation: rotate 0.6s ease;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pop-up {
+            animation: pop-up 0.6s ease;
+        }
+
+        @keyframes pop-up {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .fade {
+            animation: fade 0.6s ease;
+        }
+
+        @keyframes fade {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .wobble {
+            animation: wobble 0.6s ease;
+        }
+
+        @keyframes wobble {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10%); }
+            50% { transform: translateX(10%); }
+            75% { transform: translateX(-10%); }
+            100% { transform: translateX(0); }
+        }
+
+        .spray {
+            animation: spray 0.6s ease;
+        }
+
+        @keyframes spray {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="flashcards">
+        <div class="card">
+            <img src="images/ball.png" alt="Ball" class="ball" onclick="handleBallClick()">
+            <p>Ball</p>
+        </div>
+        <div class="card">
+            <img src="images/pencil.png" alt="Pencil" class="pencil" onclick="handlePencilClick()">
+            <p>Pencil</p>
+        </div>
+
+
+        <div class="card">
+            <img src="images/sun.png" alt="Suns" class="suns" onclick="handleSunsClick()">
+            <p>Suns</p>
+        </div>
+        <div class="card">
+            <img src="images/candle.png" alt="Candle" class="candle" onclick="handleCandleClick()">
+            <p>Candle</p>
+        </div>
+        <div class="card">
+            <img src="images/moon.png" alt="Moons" class="moons" onclick="handleMoonsClick()">
+            <p>Moons</p>
+        </div>
+        
+        <div class="card">
+            <img src="images/bottle.png" alt="Bottle" class="bottle" onclick="handleBottleClick()">
+            <p>Bottle</p>
+        </div>
+        <div class="card">
+            <img src="images/wheel.png" alt="Wheels" class="wheels" onclick="handleWheelsClick()">
+            <p>Wheels</p>
+        </div>
+        
+        <div class="card">
+            <img src="images/ladder.png" alt="Ladder" class="ladder" onclick="handleLadderClick()">
+            <p>Ladder</p>
+        </div>
+    </div>
+
+    <audio id="ball-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="coins-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="pencil-sound" src="audio/ಇದು ಉದ್ದವಾಗಿದೆ.m4a"></audio>
+    <audio id="clocks-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="bottle-sound" src="audio/ಇದು ಉದ್ದವಾಗಿದೆ.m4a"></audio>
+    <audio id="wheels-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="plates-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="suns-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="ladder-sound" src="audio/ಇದು ಉದ್ದವಾಗಿದೆ.m4a"></audio>
+    <audio id="moons-sound" src="C:\Users\Navya Jayaram\Desktop\kid\audio\ಇದು ಗುಂಡಾಗಿದೆ.mp3"></audio>
+    <audio id="candle-sound" src="audio/ಇದು ಉದ್ದವಾಗಿದೆ.m4a"></audio>
+    <script>
+        function handleBallClick() {
+            const ballSound = document.getElementById('ball-sound');
+            const ballImg = document.querySelector('.ball');
+            
+            ballSound.play();
+            ballImg.classList.add('bounce');
+            
+            // Remove bounce effect after animation ends
+            ballImg.addEventListener('animationend', () => {
+                ballImg.classList.remove('bounce');
+            }, { once: true });
+        }
+
+        function handleCoinsClick() {
+            const coinsSound = document.getElementById('coins-sound');
+            const coinsImg = document.querySelector('.coins');
+            coinsImg.classList.add('highlight-gray');
+            coinsSound.play();
+            
+            // Remove highlight after sound ends
+            coinsSound.addEventListener('ended', () => {
+                coinsImg.classList.remove('highlight-gray');
+            });
+        }
+
+        function handleClocksClick() {
+            const clocksSound = document.getElementById('clocks-sound');
+            clocksSound.play();
+        }
+
+        function handleWheelsClick() {
+            const wheelsSound = document.getElementById('wheels-sound');
+            const wheelsImg = document.querySelector('.wheels');
+            
+            
+            wheelsSound.play();
+            wheelsImg.classList.add('roll');
+            // Remove roll effect after animation ends
+            wheelsImg.addEventListener('animationend', () => {
+                wheelsImg.classList.remove('roll');
+            }, { once: true });
+        }
+
+        
+
+        function handleSunsClick() {
+            const sunsSound = document.getElementById('suns-sound');
+            const sunsImg = document.querySelector('.suns');
+            
+            sunsSound.play();
+            sunsImg.classList.add('pop-up');
+            // Remove highlight after sound ends
+            sunsSound.addEventListener('ended', () => {
+                sunsImg.classList.remove('highlight-orange');
+            });
+        }
+
+        function handleMoonsClick() {
+            const moonsSound = document.getElementById('moons-sound');
+            const moonsImg = document.querySelector('.moons');
+            
+            moonsSound.play();
+            moonsImg.classList.add('pop-up');
+            
+            // Remove highlight after sound ends
+            moonsSound.addEventListener('ended', () => {
+                moonsImg.classList.remove('highlight-greyish-white');
+            });
+        }
+
+
+        function handlePencilClick() {
+            const pencilSound = document.getElementById('pencil-sound');
+            const pencilImg = document.querySelector('.pencil');
+            
+            pencilSound.play();
+            pencilImg.classList.add('dance');
+            
+            pencilImg.addEventListener('animationend', () => {
+                pencilImg.classList.remove('dance');
+            }, { once: true });
+        }
+
+        function handleLadderClick() {
+            const ladderSound = document.getElementById('ladder-sound');
+            const ladderImg = document.querySelector('.ladder');
+            
+            ladderSound.play();
+            ladderImg.classList.add('pop-up');
+            
+            ladderImg.addEventListener('animationend', () => {
+                ladderImg.classList.remove('pop-up');
+            }, { once: true });
+        }
+
+        function handleBottleClick() {
+            const bottleSound = document.getElementById('bottle-sound');
+            const bottleImg = document.querySelector('.bottle');
+            
+            bottleSound.play();
+            bottleImg.classList.add('spray');
+            
+            bottleImg.addEventListener('animationend', () => {
+                bottleImg.classList.remove('spray');
+            }, { once: true });
+        }
+
+        function handleCandleClick() {
+            const candleSound = document.getElementById('candle-sound');
+            const candleImg = document.querySelector('.candle');
+            
+            candleSound.play();
+            candleImg.classList.add('wobble');
+            
+            candleImg.addEventListener('animationend', () => {
+                candleImg.classList.remove('wobble');
+            }, { once: true });
+        }
+    </script>
+</body>
+</html>

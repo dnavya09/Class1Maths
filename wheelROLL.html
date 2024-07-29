@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Rolling Ball</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #87CEEB;
+            overflow: hidden;
+        }
+        .plane {
+            width: 40%;
+            height: 4px;
+            background-color:black;
+            position: relative;
+            border-radius: 10px;
+            transform: rotate(20deg);
+        }
+        .ball {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -80px;
+            right: 10;
+            animation: roll 5s infinite linear;
+        }
+        @keyframes roll {
+            0% {
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateX(500px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="plane">
+        <img src="images/wheel.png" class="ball">
+    </div>
+</body>
+</html>

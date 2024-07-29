@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <title>Learn About Shapes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div id="content">
+        <div id="line">
+            <h2 class="fade-in">ಉದ್ದ ಎಂದರೆ ಏನು?</h2>
+            <canvas id="lineCanvas"></canvas>
+            <p class="fade-in">ಒಂದು ಗೆರೆ ಎರಡೂ ದಿಕ್ಕುಗಳಲ್ಲಿ ಶಾಶ್ವತವಾಗಿ ಹೋಗುತ್ತದೆ. ಏಕೆಂದರೆ ಅದು ಎಂದಿಗೂ ಮುಗಿಯುವುದಿಲ್ಲ, ಒಂದು ಸಾಲು ತುಂಬಾ ಉದ್ದವಾಗಿದೆ ಎಂದು ನಾವು ಹೇಳುತ್ತೇವೆ!</p>
+            <button class="fade-in" onclick="drawAnimatedLine()">ಗೆರೆ ತೋರಿಸು</button>
+            <p class="fade-in">ಈಗ ನಿಮ್ಮ ಸರದಿ! ನಿಮ್ಮ ಸ್ವಂತ ರೇಖೆಯನ್ನು ಸೆಳೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಎಳೆಯಿರಿ:</p>
+            <canvas id="interactiveCanvas"></canvas>
+        </div>
+        <div id="circle">
+            <h2 class="fade-in">ವರ್ತುಳ ಎಂದರೆ ಏನು?</h2>
+            <canvas id="circleCanvas"></canvas>
+            <p class="fade-in">ಒಂದು ವೃತ್ತವು ಸುತ್ತಿನಲ್ಲಿ ಎಲ್ಲಾ ಬಿಂದುಗಳು ಕೇಂದ್ರದಿಂದ ಸಮಾನ ದೂರದಲ್ಲಿ ಇರುವ ಸುತ್ತು.</p>
+            <button class="fade-in" onclick="drawAnimatedCircle()">ವೃತ್ತ ತೋರಿಸು</button>
+            <p class="fade-in">ಈಗ ನಿಮ್ಮ ಸರದಿ! ನಿಮ್ಮ ಸ್ವಂತ ವೃತ್ತವನ್ನು ಸೆಳೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಎಳೆಯಿರಿ:</p>
+            <canvas id="interactiveCircleCanvas"></canvas>
+        </div>
+        <div id="videos">
+            <div class="flashcards">
+                <div class="card">
+                    <img src="images/ball.png" alt="Ball" class="football" onclick="handleBallClick()">
+                    <p>Ball</p>
+                </div>
+                <div class="card">
+                    <img src="images/pencil.png" alt="Pencil" class="pencil" onclick="handlePencilClick()">
+                    <p>Pencil</p>
+                </div>
+        
+        
+                <div class="card">
+                    <img src="images/sun.png" alt="Suns" class="suns" onclick="handleSunsClick()">
+                    <p>Suns</p>
+                </div>
+                <div class="card">
+                    <img src="images/candle.png" alt="Candle" class="candle" onclick="handleCandleClick()">
+                    <p>Candle</p>
+                </div>
+                <div class="card">
+                    <img src="images/moon.png" alt="Moons" class="moons" onclick="handleMoonsClick()">
+                    <p>Moons</p>
+                </div>
+                
+                <div class="card">
+                    <img src="images/bottle.png" alt="Bottle" class="bottle" onclick="handleBottleClick()">
+                    <p>Bottle</p>
+                </div>
+                <div class="card">
+                    <img src="images/wheel.png" alt="Wheels" class="wheels" onclick="handleWheelsClick()">
+                    <p>Wheels</p>
+                </div>
+                
+                <div class="card">
+                    <img src="images/ladder.png" alt="Ladder" class="ladder" onclick="handleLadderClick()">
+                    <p>Ladder</p>
+                </div>
+            </div>
+            <h2 class="fade-in">ಒಂದು ವೀಡಿಯೋ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ:</h2>
+            <video class="video-object fade-in" src="download.png" data-shape="long"></video>
+            <video class="video-object fade-in" src="stick.png" data-shape="round"></video>
+        </div>
+        <div id="drag-drop-section">
+        <h2 class="fade-in">ವಸ್ತುಗಳನ್ನು ಸರಿಯಾದ ಪೆಟ್ಟಿಗೆಯಲ್ಲಿ ಇರಿಸಿ:</h2>
+            <div class="containers">
+                <div class="container" id="roundContainer">
+                    ಗುಂಡು ವಸ್ತುಗಳು</div>
+                <div class="container" id="longContainer">ಉದ್ದ ವಸ್ತುಗಳು</div>
+            </div>
+        <div class="draggable-objects">
+            <div class="draggable" data-shape="round" draggable="true">
+                <img src="download.png" alt="Ball" />
+            </div>
+            <div class="draggable" data-shape="long" draggable="true">
+                <img src="pencil.png" alt="Pencil" />
+            </div>
+            <div class="draggable" data-shape="round" draggable="true">
+                <img src="coin.png" alt="Coin" />
+            </div>
+            <div class="draggable" data-shape="long" draggable="true">
+                <img src="stick.png" alt="Stick" />
+            </div>
+        </div>
+        </div>
+        <div class="line-objects">
+            <div class="object-container" data-shape="round">
+                <img src="download.png" alt="Ball" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="long">
+                <img src="pencil.png" alt="Pencil" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="round">
+                <img src="coin.png" alt="Coin" />
+                <div class="ticker"></div>
+            </div>
+            <div class="object-container" data-shape="long">
+                <img src="stick.png" alt="Stick" />
+                <div class="ticker"></div>
+            </div>
+        </div>
+    </div>
+    <h2>Classify Objects: Rolling or Slipping</h2>
+        <p>Check the appropriate box to classify each object as rolling or slipping.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Object</th>
+                    <th>Rolling</th>
+                    <th>Slipping</th>
+                </tr>
+            </thead>
+            <tbody id="object-table">
+                <!-- Rows will be inserted dynamically -->
+            </tbody>
+        </table>
+        <button onclick="checkAnswers()">Check</button>
+        <div id="feedback"></div>
+    </div>
+    <audio id="longAudio" src="roundis.mp3"></audio>
+    <audio id="roundAudio" src="roundis.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
