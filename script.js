@@ -298,3 +298,83 @@ document.querySelectorAll('.object-container').forEach(container => {
         }
     });
 });
+const objects = [
+    {
+        image: 'download.png',
+        classification: 'rolling',
+        name: 'Ball'
+    },
+    {
+        image: 'stick.png',
+        classification: 'slipping',
+        name: 'Stick'
+    },
+    {
+        image: 'coin.png',
+        classification: 'rolling',
+        name: 'Wheel'
+    },
+    {
+        image: 'pencil.png',
+        classification: 'slipping',
+        name: 'Box'
+    }
+];
+
+function createTable() {
+    const table = document.getElementById('object-table');
+    objects.forEach((obj, index) => {
+        const row = document.createElement('tr');
+        
+        const cell1 = document.createElement('td');
+        const img = document.createElement('img');
+        img.src = obj.image;
+        img.alt = obj.name;
+        img.style.width = '50px';
+        img.style.height = '50px';
+        cell1.appendChild(img);
+        row.appendChild(cell1);
+        
+        const cell2 = document.createElement('td');
+        const rollingInput = document.createElement('input');
+        rollingInput.type = 'checkbox';
+        rollingInput.id = `rolling-${index}`;
+        cell2.appendChild(rollingInput);
+        row.appendChild(cell2);
+        
+        const cell3 = document.createElement('td');
+        const slippingInput = document.createElement('input');
+        slippingInput.type = 'checkbox';
+        slippingInput.id = `slipping-${index}`;
+        cell3.appendChild(slippingInput);
+        row.appendChild(cell3);
+        
+        table.appendChild(row);
+    });
+}
+
+function checkAnswers() {
+    let feedback = '';
+    let allCorrect = true;
+    
+    objects.forEach((obj, index) => {
+        const isRollingChecked = document.getElementById(`rolling-${index}`).checked;
+        const isSlippingChecked = document.getElementById(`slipping-${index}`).checked;
+        
+        if ((obj.classification === 'rolling' && isRollingChecked && !isSlippingChecked) ||
+            (obj.classification === 'slipping' && isSlippingChecked && !isRollingChecked)) {
+            feedback += `<p>Correct for ${obj.name}!</p>`;
+        } else {
+            feedback += `<p>Wrong for ${obj.name}. It ${obj.classification}s.</p>`;
+            allCorrect = false;
+        }
+    });
+    
+    if (allCorrect) {
+        feedback = '<p>All answers are correct!</p>';
+    }
+    
+    document.getElementById('feedback').innerHTML = feedback;
+}
+
+window.onload = createTable;
