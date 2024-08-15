@@ -1,57 +1,47 @@
-// function drawAnimatedLine() {
-//     const canvas = document.getElementById('lineCanvas');
-//     const context = canvas.getContext('2d');
-//     canvas.width = 400;
-//     canvas.height = 100;
-//     context.clearRect(0, 0, canvas.width, canvas.height);
-
-//     let startX = 50;
-//     let endX = 50;
-//     const startY = 50;
-//     const endY = 50;
-//     const speed = 2; // Speed of the line drawing
-
-//     function animateLine() {
-//         if (endX < 350) {
-//             endX += speed;
-//             context.beginPath();
-//             context.moveTo(startX, startY);
-//             context.lineTo(endX, endY);
-//             context.stroke();
-//             requestAnimationFrame(animateLine);
-//         }
-//     }
-
-//     animateLine();
-// }
-
-// function drawAnimatedCircle() {
-//     const canvas = document.getElementById('circleCanvas');
-//     const context = canvas.getContext('2d');
-//     canvas.width = 400;
-//     canvas.height = 400;
-//     context.clearRect(0, 0, canvas.width, canvas.height);
-
-//     const centerX = canvas.width / 2;
-//     const centerY = canvas.height / 2;
-//     const radius = 100;
-//     let angle = 0;
-//     const speed = 0.05; // Speed of the circle drawing
-
-//     function animateCircle() {
-//         if (angle < 2 * Math.PI) {
-//             angle += speed;
-//             context.beginPath();
-//             context.arc(centerX, centerY, radius, 0, angle);
-//             context.stroke();
-//             requestAnimationFrame(animateCircle);
-//         }
-//     }
-
-//     animateCircle();
-// }
-
-// Interactive Drawing for Lines
+console.log("Hello im running")
+var currentActivityIndex = 0;
+      const activities = document.querySelectorAll('.activity');
+      console.log(activities);
+  
+      function updateActivity() {
+          activities.forEach((activity, index) => {
+              if (index === currentActivityIndex) {
+                  activity.classList.add('active');
+              } else {
+                  activity.classList.remove('active');
+              }
+          });
+      }
+      
+      function showNextActivity() {
+          if (currentActivityIndex < activities.length - 1) {  // Corrected boundary condition
+              currentActivityIndex++;
+              console.log(currentActivityIndex) // Move to the next activity
+              updateActivity();
+          } else {
+              console.log("No more activities.");
+          }
+      }
+  
+      function showPreviousActivity() {
+          if (currentActivityIndex > 0) {  // Add previous functionality
+              currentActivityIndex--; // Move to the previous activity
+              updateActivity();
+          } else {
+              console.log("Already at the first activity.");
+          }
+      }
+  
+    //   document.querySelector('.btn-next').addEventListener('click', () => {
+    //       console.log("Next button clicked"); // Debugging
+    //       showNextActivity();
+    //   });
+  
+    //   document.querySelector('.btn-back').addEventListener('click', () => {
+    //       console.log("Back button clicked"); // Debugging
+    //       showPreviousActivity();
+    //   });
+      updateActivity();
 const interactiveLineCanvas = document.getElementById('interactiveCanvas');
 const interactiveLineContext = interactiveLineCanvas.getContext('2d');
 interactiveLineCanvas.width = 400;
@@ -213,6 +203,7 @@ function drawAnimatedCircle() {
 // Drag and Drop Functionality
 const draggables = document.querySelectorAll('.draggable');
 const containers = document.querySelectorAll('.dragcont');
+const clapSound = document.getElementById('clapSound');
 
 draggables.forEach(draggable => {
     draggable.addEventListener('dragstart', () => {
@@ -238,6 +229,7 @@ containers.forEach(container => {
                 (shape === 'long' && container.id === 'longContainer')) {
                 showTick(container);
                 fixAndBlurObject(draggingElement, container);
+                checkCompletion();
             } else {
                 showWrongMark(container);
                 resetPosition(draggingElement);
@@ -262,6 +254,26 @@ function fixAndBlurObject(object, container) {
     container.appendChild(object);
 }
 
+
+function checkCompletion() {
+    const roundItems = document.querySelectorAll('#roundContainer .draggable');
+    const longItems = document.querySelectorAll('#longContainer .draggable');
+    const totalItems = draggables.length;
+
+    // Check if the number of fixed items in each container matches the expected number
+    if (roundItems.length + longItems.length === totalItems) {
+        playClapSoundForDuration(5000); // Play clapping sound for 5 seconds
+    }
+}
+
+function playClapSoundForDuration(duration) {
+    clapSound.play();
+    setTimeout(() => {
+        clapSound.pause(); // Stop the sound after the specified duration
+        clapSound.currentTime = 0; // Reset the sound to the start
+    }, duration);
+}
+
 function showWrongMark(container) {
     const wrongMark = document.createElement('div');
     wrongMark.classList.add('wrong-mark');
@@ -277,14 +289,46 @@ function resetPosition(object) {
     initialContainer.appendChild(object);
 }
 
-document.querySelectorAll('.object-container').forEach(container => {
+// document.querySelectorAll('.object-container').forEach(container => {
+//     container.addEventListener('click', () => {
+//         const shape = container.dataset.shape;
+//         const ticker = container.querySelector('.ticker');
+//         if (shape === 'round') {
+//             ticker.innerHTML = '✔';
+//             ticker.classList.add('tick');
+//             ticker.classList.remove('wrong-mark');
+//         } else {
+//             ticker.innerHTML = '✖';
+//             ticker.classList.add('wrong-mark');
+//             ticker.classList.remove('tick');
+//             setTimeout(() => {
+//                 ticker.innerHTML = '';
+//             }, 2000);
+//         }
+//     });
+// });
+
+
+const objectContainers = document.querySelectorAll('.object-container');
+const applauseSound = document.getElementById('cartoonSound');
+
+// Count the number of round objects that need to be correctly identified
+const totalRoundObjects = document.querySelectorAll('.object-container[data-shape="round"]').length;
+let correctSelections = 0; // Counter for correct selections
+
+objectContainers.forEach(container => {
     container.addEventListener('click', () => {
         const shape = container.dataset.shape;
         const ticker = container.querySelector('.ticker');
+
         if (shape === 'round') {
-            ticker.innerHTML = '✔';
-            ticker.classList.add('tick');
-            ticker.classList.remove('wrong-mark');
+            if (!ticker.classList.contains('tick')) { // Ensure the tick is not added again
+                ticker.innerHTML = '✔';
+                ticker.classList.add('tick');
+                ticker.classList.remove('wrong-mark');
+                correctSelections += 1; // Increment correct selections counter
+                checkComp(); // Check if all round objects are selected
+            }
         } else {
             ticker.innerHTML = '✖';
             ticker.classList.add('wrong-mark');
@@ -295,6 +339,21 @@ document.querySelectorAll('.object-container').forEach(container => {
         }
     });
 });
+
+function checkComp() {
+    // Play clapping sound if all round objects have been correctly identified
+    if (correctSelections === totalRoundObjects) {
+        playApplauseSoundForDuration(3000); // Play applause sound for 5 seconds
+    }
+}
+
+function playApplauseSoundForDuration(duration) {
+    applauseSound.play();
+    setTimeout(() => {
+        applauseSound.pause(); // Stop the sound after the specified duration
+        applauseSound.currentTime = 0; // Reset the sound to the start
+    }, duration);
+}
 
 // // Drag and Drop Functionality
 // const draggables = document.querySelectorAll('.draggable');
@@ -396,28 +455,49 @@ function createTable() {
         table.appendChild(row);
     });
 }
+function playYipeeSound() {
+    const successSound = document.getElementById('yipeeSound');
+    successSound.currentTime = 0; // Reset to start
+    successSound.play();
 
+    // Stop the sound after 3 seconds
+    setTimeout(() => {
+        successSound.pause();
+    }, 2000);
+}
 function checkAnswers() {
     let feedback = '';
     let allCorrect = true;
-    
+
+    const objectNamesKannada = {
+        'Ball': 'ಚೆಂಡು',
+        'Stick': 'ಕೋಲು',
+        'Wheel': 'ಚಕ್ರ',
+        'Box': 'ಪೆಟ್ಟಿಗೆ',
+        // Add more objects and their Kannada translations as needed
+    };
+
     objects.forEach((obj, index) => {
         const isRollingChecked = document.getElementById(`rolling-${index}`).checked;
         const isSlippingChecked = document.getElementById(`slipping-${index}`).checked;
-        
+
+        const classificationKannada = obj.classification === 'rolling' ? 'ಉರುಳುತ್ತ' : 'ಜಾರುತ್ತ'; // "rolling" -> "ಗುಂಡು", "slipping" -> "ಜಾರಿ"
+        const objNameKannada = objectNamesKannada[obj.name] || obj.name; // Use Kannada name or fallback to the original name
+
         if ((obj.classification === 'rolling' && isRollingChecked && !isSlippingChecked) ||
             (obj.classification === 'slipping' && isSlippingChecked && !isRollingChecked)) {
-            feedback += `<p>Correct for ${obj.name}!</p>`;
+            feedback += `<p>${objNameKannada} ಗೆ ಸರಿಯಾಗಿದೆ!</p>`;  // "is correct!"
         } else {
-            feedback += `<p>Wrong for ${obj.name}. It ${obj.classification}s.</p>`;
+            feedback += `<p>${objNameKannada} ಗೆ ತಪ್ಪಾಗಿದೆ. ಇದು ${classificationKannada}ದೆ.</p>`;  // "is incorrect. It is rolling/slipping."
             allCorrect = false;
         }
     });
-    
+
     if (allCorrect) {
-        feedback = '<p>All answers are correct!</p>';
+        feedback = '<p>ಎಲ್ಲಾ ಉತ್ತರಗಳು ಸರಿಯಾಗಿವೆ!</p>';  // "All answers are correct!"
+        playYipeeSound();
     }
-    
+
     document.getElementById('feedback').innerHTML = feedback;
 }
 
@@ -565,14 +645,48 @@ function resetPosition() {
 function toggleAnimation() {
     if (isRolling) {
         stopAnimation();
-        button.textContent = 'Start Animation';
+        button.textContent = 'ಅನಿಮೇಷನ್ ಪ್ರಾರಂಭಿಸಿ';
     } else {
         startAnimation();
-        button.textContent = 'Stop Animation';
+        button.textContent = 'ಅನಿಮೇಷನ್ ನಿಲ್ಲಿಸಿ';
     }
     isRolling = !isRolling;
 }
 
+let isSliding = false;
+const stick = document.querySelector('.stick');
+const btn2 = document.querySelector('.btn2');
 
+function startAnim() {
+    stick.classList.add('sliding');
+    stick.addEventListener('animationend', resetPos);
+}
+
+function stopAnim() {
+    stick.classList.remove('sliding');
+    stick.removeEventListener('animationend', resetPos);
+}
+
+function resetPos() {
+    stick.classList.remove('sliding');
+    void stick.offsetWidth; // Trigger reflow
+    stick.classList.add('sliding');
+}
+
+function toggleAnim() {
+    if (isSliding) {
+        stopAnim();
+        btn2.textContent = 'ಅನಿಮೇಷನ್ ಪ್ರಾರಂಭಿಸಿ';
+    } else {
+        startAnim();
+        btn2.textContent = 'ಅನಿಮೇಷನ್ ನಿಲ್ಲಿಸಿ';
+    }
+    isSliding = !isSliding;
+}
+
+function playAudio(id) {
+    var audio = document.getElementById(id);
+    audio.play();
+  }
 
 window.onload = createTable;
