@@ -463,7 +463,7 @@ function playYipeeSound() {
     // Stop the sound after 3 seconds
     setTimeout(() => {
         successSound.pause();
-    }, 2000);
+    }, 5000);
 }
 function checkAnswers() {
     let feedback = '';
